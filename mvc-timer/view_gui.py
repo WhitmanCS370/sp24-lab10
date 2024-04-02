@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from abc import ABC, abstractmethod
 from controller import TimerController, TimerView
+from pygame import mixer
 
 # Fixed up from AI generated code
 # See https://chat.openai.com/share/35e48a9c-ba3f-461e-bc01-633ef4343eff
@@ -88,10 +89,12 @@ class GuiTimerView(TimerView):
         self.display_time()
 
     def timer_done(self):
-        """Indicate the timer is done. Called by the controller.""" 
+        """Indicate the timer is done. Called by the controller."""
+        self.done_sound()
         self.start_button.config(state="normal")
         self.stop_button.config(state="disabled")
         self.pause_button.config(state="disabled")
+
         
     def start(self):
         """Start the timer."""

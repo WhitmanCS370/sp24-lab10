@@ -1,6 +1,7 @@
 from threading import Thread
 from time import sleep
 from controller import TimerController, TimerView
+from pygame import mixer
 
 class TextTimerView(TimerView):
 
@@ -22,7 +23,7 @@ class TextTimerView(TimerView):
 
     def timer_done(self):
         """Indicate the timer is done."""
-        print("DING DING DING DING DING")
+        self.done_sound()
 
     def _getTimeFromUser(self):
         """Get a positive integer time from the user."""
