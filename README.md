@@ -7,12 +7,12 @@ Organization:
 * mvc-timer: The MVC example application developed by Prof Davis
 
 ## Team Members for Part 1
-Enter your names here
+Chris, Coden
 
 ## Team Roles for Part 1
 Who will start out as
-* DRIVER: _Driver's name_
-* NAVIGATOR: _Navigator's name_
+* DRIVER: Chris 
+* NAVIGATOR: Coden
 
 You will switch halfway through this activity.
 
@@ -21,7 +21,9 @@ You will switch halfway through this activity.
 _Write your answers to the questions below._
 
 * What were the main ideas from the pre-lab reading?
+- MVC, dependency inversion
 * What questions did you have about this material? What did you find confusing?
+- How to acutally use the dependency inversion?
 
 ### Exercise 0: Run the tests and the application
 View the README file in the mvc-timer directory. Run the tests and the application.
@@ -37,7 +39,7 @@ What questions do you have? _Write them here. If you need to know, ask Prof Davi
 
 ### Exercise 2: Patterns and principles
 _Answer the following questions to the best of your ability._
-* Which concrete classes implement the Observer and Observable roles?
+* Which concrete classes implement the Observer and Subject roles?
 * How do the model, controller, and view classes gain references to each other? What style of dependency injection does the application use: constructor, method, or property injection?
 
 ### Exercise 3: Extending the code
