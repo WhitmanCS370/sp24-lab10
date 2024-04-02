@@ -126,7 +126,7 @@ class GuiTimerView(TimerView):
 
     def timer_done(self):
         """Indicate the timer is done. Called by the controller.""" 
-        self.play_sound(SoundPlayer) # Now I have to pass arguments to the SoundPlayer class here, which defeats the purpose of the whole injection
+        self.play_sound(SoundPlayer)
         self.start_button.config(state="normal")
         self.stop_button.config(state="disabled")
         self.pause_button.config(state="disabled")
