@@ -3,6 +3,7 @@ from time import sleep
 from mvc import TimerModel
 from observer import Subject, Observer
 
+import os 
 
 class ThreadTimerModel(TimerModel,Subject):
     """
