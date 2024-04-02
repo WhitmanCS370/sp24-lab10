@@ -55,26 +55,29 @@ class GuiTimerView(TimerView):
 
     def increment_minutes(self):
         """Increment minutes by 1. Called on minutes up button press."""
-        self.minutes += 1
-        self.display_time()
+        if not self.controller.running():
+            self.minutes += 1
+            self.display_time()
         
     def decrement_minutes(self):
         """Decrement minutes by 1. Called on minutes down button press."""
-        if self.minutes > 0:
+        if self.minutes > 0 and self.controller.running() == False:
             self.minutes -= 1
             self.display_time()
         
     def increment_seconds(self):
         """Increment seconds by 5. Called on seconds up button press."""
-        self.seconds += 5
-        self.seconds %= 60
-        self.display_time()
+        if not self.controller.running():
+            self.seconds += 5
+            self.seconds %= 60
+            self.display_time()
         
     def decrement_seconds(self):
         """Decrement seconds by 5. Called on seconds down button press."""
-        self.seconds -= 5
-        self.seconds %= 60
-        self.display_time()
+        if self.seconds >= 5 and self.controller.running() == False:
+            self.seconds -= 5
+            self.seconds %= 60
+            self.display_time()
         
     def display_time(self):
         """Display the time stored by this object."""
