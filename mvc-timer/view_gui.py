@@ -16,6 +16,7 @@ class GuiTimerView(TimerView):
         self.controller = TimerController(model, self)
         self.minutes = 0    # Must be non-negative
         self.seconds = 0    # Must be in the range 0..59, inclusive
+        self.running = self.controller.running()
 
         self.root = tk.Tk()
         self.root.title("Timer")
@@ -56,26 +57,29 @@ class GuiTimerView(TimerView):
 
     def increment_minutes(self):
         """Increment minutes by 1. Called on minutes up button press."""
-        self.minutes += 1
-        self.display_time()
+        if not self.running:
+            self.minutes += 1
+            self.display_time()
         
     def decrement_minutes(self):
         """Decrement minutes by 1. Called on minutes down button press."""
-        if self.minutes > 0:
+        if not self.running and self.minutes > 0:
             self.minutes -= 1
             self.display_time()
         
     def increment_seconds(self):
         """Increment seconds by 5. Called on seconds up button press."""
-        self.seconds += 5
-        self.seconds %= 60
-        self.display_time()
+        if not self.running:
+            self.seconds += 5
+            self.seconds %= 60
+            self.display_time()
         
     def decrement_seconds(self):
         """Decrement seconds by 5. Called on seconds down button press."""
-        self.seconds -= 5
-        self.seconds %= 60
-        self.display_time()
+        if not self.running:
+            self.seconds -= 5
+            self.seconds %= 60
+            self.display_time()
         
     def display_time(self):
         """Display the time stored by this object."""
@@ -102,12 +106,23 @@ class GuiTimerView(TimerView):
         self.start_button.config(state="disabled")
         self.stop_button.config(state="normal")
         self.pause_button.config(state="normal")
+
+        self.minutes_up_button.config(state="disabled")
+        self.minutes_down_button.config(state="disabled")
+        self.seconds_up_button.config(state="disabled")
+        self.seconds_down_button.config(state="disabled")
         
     def stop(self):
         """Stop the timer."""
         self.start_button.config(state="normal")
         self.stop_button.config(state="disabled")
         self.pause_button.config(text="Pause", state="disabled")
+
+        self.minutes_up_button.config(state="normal")
+        self.minutes_down_button.config(state="normal")
+        self.seconds_up_button.config(state="normal")
+        self.seconds_down_button.config(state="normal")
+
         self.minutes = 0
         self.seconds = 0
         self.display_time()
