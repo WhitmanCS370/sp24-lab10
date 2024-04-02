@@ -19,9 +19,9 @@ class TimerView(ABC):
         """Called by the controller when the timer reaches 0."""
         pass
 
-    def done_sound(self):
+    def done_sound(self, file='bell.wav'):
         mixer.init()
-        sound=mixer.Sound('bell.wav')
+        sound=mixer.Sound(file)
         sound.play()
 
 class TimerModel(ABC):

@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import ttk
 from abc import ABC, abstractmethod
 from controller import TimerController, TimerView
-from pygame import mixer
 
 # Fixed up from AI generated code
 # See https://chat.openai.com/share/35e48a9c-ba3f-461e-bc01-633ef4343eff

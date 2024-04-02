@@ -1,7 +1,6 @@
 from threading import Thread
 from time import sleep
 from controller import TimerController, TimerView
-from pygame import mixer
 
 class TextTimerView(TimerView):
 
