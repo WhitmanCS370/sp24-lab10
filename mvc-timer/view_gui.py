@@ -100,7 +100,11 @@ class GuiTimerView(TimerView):
         self.start_button.config(state="disabled")
         self.stop_button.config(state="normal")
         self.pause_button.config(state="normal")
-        
+        self.seconds_down_button.config(state="disabled")
+        self.seconds_up_button.config(state="disabled")
+        self.minutes_down_button.config(state="disabled")
+        self.minutes_up_button.config(state="disabled")
+    
     def stop(self):
         """Stop the timer."""
         self.start_button.config(state="normal")
