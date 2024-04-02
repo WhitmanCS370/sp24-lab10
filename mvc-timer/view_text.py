@@ -1,6 +1,7 @@
 from threading import Thread
 from time import sleep
 from controller import TimerController, TimerView
+import simpleaudio as sa
 
 class TextTimerView(TimerView):
 
@@ -22,7 +23,10 @@ class TextTimerView(TimerView):
 
     def timer_done(self):
         """Indicate the timer is done."""
-        print("DING DING DING DING DING")
+        wave_obj = sa.WaveObject.from_wave_file("../coffee.wav")
+        play_obj = wave_obj.play()
+        play_obj.wait_done()
+       # print("DING DING DING DING DING")
 
     def _getTimeFromUser(self):
         """Get a positive integer time from the user."""
