@@ -41,14 +41,27 @@ Then read the code to understand what happens when you run the GUI application, 
 
 What questions do you have? _Write them here. If you need to know, ask Prof Davis since she wrote the code!_
 
+N/A
+
 ### Exercise 2: Patterns and principles
 _Answer the following questions to the best of your ability._
 * Which concrete classes implement the Observer and Observable roles?
+view_gui and view_text use the Observer pattern to observe the model, and display the time remaining.
+
 * How do the model, controller, and view classes gain references to each other? What style of dependency injection does the application use: constructor, method, or property injection?
+
+Constructor injection is used to pass references to the model, view, and controller classes.
 
 ### Exercise 3: Extending the code
 Extend the text or GUI application to play a sound when the timer is done.
 
+[x]
+
 As time permits, try other exercises from the README in the `mvc-timer` directory.
 
+[x]
+
 _Record here: What extensions did you implement or attempt to implement?_
+
+Questions:
+2,3,4,6

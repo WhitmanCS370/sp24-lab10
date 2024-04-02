@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from controller import TimerController, TimerView
+import model_thread
 import pygame
 
 app = Flask(__name__)
@@ -61,4 +62,5 @@ class WebTimerView(TimerView):
             pygame.mixer.music.play()
 
 if __name__ == "__main__":
+    model = timer_thread.ThreadTimerModel()
     WebTimerView().run()
