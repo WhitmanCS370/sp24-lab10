@@ -6,6 +6,10 @@ _April 2, 2024_
 Organization:
 * mvc-timer: The MVC example application developed by Prof Davis
 
+## Team Members for Part 1
+Steven
+Aiden
+
 ## Team Roles for Part 1
 Who will start out as
 * DRIVER: _Driver's name_
