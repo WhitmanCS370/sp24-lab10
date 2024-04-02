@@ -3,6 +3,8 @@ from time import sleep
 from mvc import TimerModel
 from observer import Subject, Observer
 
+import os
+
 class ThreadTimerModel(TimerModel,Subject):
     """
     Implements a countdown timer with a one-second resolution.
@@ -18,6 +20,7 @@ class ThreadTimerModel(TimerModel,Subject):
         self._thread = None       
         self._lock = Lock()
         self._observers = []
+        
 
     @property 
     def time(self):
@@ -49,6 +52,10 @@ class ThreadTimerModel(TimerModel,Subject):
         if self._running:
             self._running = False
             self.notify()
+        if self.time == 0:
+            os.system("afplay /System/Library/Sounds/Ping.aiff")
+
+            
 
     def start_timer(self):
         """Start the timer from the current time."""
