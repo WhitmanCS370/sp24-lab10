@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from abc import ABC, abstractmethod
 from controller import TimerController, TimerView
+import simpleaudio
 
 # Fixed up from AI generated code
 # See https://chat.openai.com/share/35e48a9c-ba3f-461e-bc01-633ef4343eff
@@ -15,6 +16,7 @@ class GuiTimerView(TimerView):
         self.controller = TimerController(model, self)
         self.minutes = 0    # Must be non-negative
         self.seconds = 0    # Must be in the range 0..59, inclusive
+        self.running = self.controller.running()
 
         self.root = tk.Tk()
         self.root.title("Timer")
@@ -35,13 +37,13 @@ class GuiTimerView(TimerView):
         self.seconds_down_button = ttk.Button(self.root, text="▼", command=self.decrement_seconds)
         self.seconds_down_button.grid(row=1, column=2, padx=5, pady=5)
 
-        self.start_button = ttk.Button(self.root, text="Start", command=self.start)
+        self.start_button = ttk.Button(self.root, text="▶", command=self.start)
         self.start_button.grid(row=2, column=0, padx=5, pady=5)
         
-        self.stop_button = ttk.Button(self.root, text="Stop", command=self.stop, state="disabled")
+        self.stop_button = ttk.Button(self.root, text="⏹", command=self.stop, state="disabled")
         self.stop_button.grid(row=2, column=1, padx=5, pady=5)
         
-        self.pause_button = ttk.Button(self.root, text="Pause", command=self.pause, state="disabled")
+        self.pause_button = ttk.Button(self.root, text="⏸", command=self.pause, state="disabled")
         self.pause_button.grid(row=2, column=2, padx=5, pady=5)
         
     def run(self):
@@ -55,26 +57,29 @@ class GuiTimerView(TimerView):
 
     def increment_minutes(self):
         """Increment minutes by 1. Called on minutes up button press."""
-        self.minutes += 1
-        self.display_time()
+        if not self.running:
+            self.minutes += 1
+            self.display_time()
         
     def decrement_minutes(self):
         """Decrement minutes by 1. Called on minutes down button press."""
-        if self.minutes > 0:
+        if not self.running and self.minutes > 0:
             self.minutes -= 1
             self.display_time()
         
     def increment_seconds(self):
         """Increment seconds by 5. Called on seconds up button press."""
-        self.seconds += 5
-        self.seconds %= 60
-        self.display_time()
+        if not self.running:
+            self.seconds += 5
+            self.seconds %= 60
+            self.display_time()
         
     def decrement_seconds(self):
         """Decrement seconds by 5. Called on seconds down button press."""
-        self.seconds -= 5
-        self.seconds %= 60
-        self.display_time()
+        if not self.running:
+            self.seconds -= 5
+            self.seconds %= 60
+            self.display_time()
         
     def display_time(self):
         """Display the time stored by this object."""
@@ -92,6 +97,7 @@ class GuiTimerView(TimerView):
         self.start_button.config(state="normal")
         self.stop_button.config(state="disabled")
         self.pause_button.config(state="disabled")
+        simpleaudio.WaveObject.from_wave_file('classic_hurt.wav').play()
         
     def start(self):
         """Start the timer."""
@@ -100,12 +106,17 @@ class GuiTimerView(TimerView):
         self.start_button.config(state="disabled")
         self.stop_button.config(state="normal")
         self.pause_button.config(state="normal")
+
+        self.time_update_button_toggle("disabled")
         
     def stop(self):
         """Stop the timer."""
         self.start_button.config(state="normal")
         self.stop_button.config(state="disabled")
         self.pause_button.config(text="Pause", state="disabled")
+
+        self.time_update_button_toggle("normal")
+
         self.minutes = 0
         self.seconds = 0
         self.display_time()
@@ -119,6 +130,13 @@ class GuiTimerView(TimerView):
         else:
             self.controller.pause()
             self.pause_button.config(text="Resume")
+
+    def time_update_button_toggle(self, state):
+        self.minutes_up_button.config(state=state)
+        self.minutes_down_button.config(state=state)
+        self.seconds_up_button.config(state=state)
+        self.seconds_down_button.config(state=state)
+
 
 if __name__ == "__main__":
     GuiTimerView().run()
