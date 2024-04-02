@@ -7,7 +7,8 @@ Organization:
 * mvc-timer: The MVC example application developed by Prof Davis
 
 ## Team Members for Part 1
-Enter your names here
+Steven
+Aiden
 
 ## Team Roles for Part 1
 Who will start out as
@@ -21,8 +22,14 @@ You will switch halfway through this activity.
 _Write your answers to the questions below._
 
 * What were the main ideas from the pre-lab reading?
-* What questions did you have about this material? What did you find confusing?
 
+Dependency inversion: higher level modules should depend on abstractions of the lower level functions
+Dependency injection: Realization of dependency inversion through various methods
+Model-View-Controller - A design pattern where an application is seperated into model - data and bussiness logic,
+
+view - the interface shown to users,
+
+controller - managing connection between model and view
 ### Exercise 0: Run the tests and the application
 View the README file in the mvc-timer directory. Run the tests and the application.
 
