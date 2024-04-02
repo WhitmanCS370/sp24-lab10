@@ -11,8 +11,8 @@ Enter your names here
 
 ## Team Roles for Part 1
 Who will start out as
-* DRIVER: _Driver's name_
-* NAVIGATOR: _Navigator's name_
+* DRIVER: John Leeds
+* NAVIGATOR: Oliver Baltzer
 
 You will switch halfway through this activity.
 
@@ -21,7 +21,15 @@ You will switch halfway through this activity.
 _Write your answers to the questions below._
 
 * What were the main ideas from the pre-lab reading?
+    * MVC: You have the **model** that controls the data and business logic, we got the **view** which displays the data, and then we got the **controller** which acts as an intermediary between the model and controller.
+    * Dependency inversion - guidelines for writing loosely coupled classes.
+        * High level modules should not depend on low level modules.
+        * Abstractions should not depond upon details. Details should depend upon abstractions.
+    * Use the interface keyword in C#.
+    * When you have one class that depends on another one, it goods to use an interface.
+    * Dependency injection.
 * What questions did you have about this material? What did you find confusing?
+    * We were not familiar with how to create interfaces and abstract classes in Python.
 
 ### Exercise 0: Run the tests and the application
 View the README file in the mvc-timer directory. Run the tests and the application.

@@ -21,9 +21,14 @@ These files are listed in recommended reading order.
 # Exercises
 1. Run the application. Read the Python files. Follow the links in the documentation. What questions do you have?
 2. Modify the text timer to play a sound when the timer is done.
+    * We used pygame because you can't install `simpleaudio` on the lab computers.
 3. Extend the graphical timer view so that the user can choose a sound to play when the timer is done. Try asking ChatGPT for help with the [tkinter](https://docs.python.org/3/library/tkinter.html) package.
 4. In the graphical timer view, what happens if you push the time setting buttons while the timer is running? Come up with at least two different ways you could prevent the unexpected behavior, and implement one of them. 
+    * We disabled the buttons to modify the time when the timer starts.
 5. In the graphical view, the code to enable and disable buttons is repetitive. Tidy up to eliminate the duplication.
+    * We created a variable to hold a list of the buttons that modify the time so we didn't repeatedly create that list.
 6. Modify the GUI to use Unicode characters or images for play, stop, and pause: ▶ ⏹ ⏸. Research how to display the pause button as either raised or sunken depending on whether the timer is currently paused.
 7. Use the built-in [curses](https://docs.python.org/3/library/curses.html) module to make an improved timer view for the terminal.
+    * We used chatgpt to understand the curses module, here is a link to out conversation: source: https://chat.openai.com/c/96e32f8e-fb78-4880-a4db-ca751b03edf4
 8. Use the [flask](https://flask.palletsprojects.com/en/3.0.x/) framework to create a web interface for your timer. (It will not keep very good time.)
+    * We didnt get to this part

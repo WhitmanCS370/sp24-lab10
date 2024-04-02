@@ -35,15 +35,17 @@ class GuiTimerView(TimerView):
         self.seconds_down_button = ttk.Button(self.root, text="▼", command=self.decrement_seconds)
         self.seconds_down_button.grid(row=1, column=2, padx=5, pady=5)
 
-        self.start_button = ttk.Button(self.root, text="Start", command=self.start)
+        self.start_button = ttk.Button(self.root, text="\u25B7", command=self.start)
         self.start_button.grid(row=2, column=0, padx=5, pady=5)
         
-        self.stop_button = ttk.Button(self.root, text="Stop", command=self.stop, state="disabled")
+        self.stop_button = ttk.Button(self.root, text="\u23F9", command=self.stop, state="disabled")
         self.stop_button.grid(row=2, column=1, padx=5, pady=5)
         
-        self.pause_button = ttk.Button(self.root, text="Pause", command=self.pause, state="disabled")
+        self.pause_button = ttk.Button(self.root, text="\u23F8", command=self.pause, state="disabled")
         self.pause_button.grid(row=2, column=2, padx=5, pady=5)
         
+        self.time_change_buttons = [self.seconds_down_button, self.seconds_up_button, self.minutes_down_button, self.minutes_up_button]
+
     def run(self):
         """Run the application."""
         self.root.mainloop()
@@ -90,6 +92,8 @@ class GuiTimerView(TimerView):
     def timer_done(self):
         """Indicate the timer is done. Called by the controller.""" 
         self.start_button.config(state="normal")
+        for button in self.time_change_buttons:
+            button.config(state="normal")
         self.stop_button.config(state="disabled")
         self.pause_button.config(state="disabled")
         
@@ -98,6 +102,8 @@ class GuiTimerView(TimerView):
         time_in_seconds = 60*self.minutes + self.seconds
         self.controller.start(time_in_seconds)
         self.start_button.config(state="disabled")
+        for button in self.time_change_buttons:
+            button.config(state="disabled")
         self.stop_button.config(state="normal")
         self.pause_button.config(state="normal")
         
@@ -105,7 +111,7 @@ class GuiTimerView(TimerView):
         """Stop the timer."""
         self.start_button.config(state="normal")
         self.stop_button.config(state="disabled")
-        self.pause_button.config(text="Pause", state="disabled")
+        self.pause_button.config(text="\u23F8", state="disabled")
         self.minutes = 0
         self.seconds = 0
         self.display_time()
@@ -115,10 +121,12 @@ class GuiTimerView(TimerView):
         """Pause the timer, or resume if already paused.."""
         if self.controller.paused():
             self.controller.resume()
-            self.pause_button.config(text="Pause")
+            self.pause_button.config(text="\u23F8")
+            self.pause_button.state(['!pressed'])
         else:
             self.controller.pause()
             self.pause_button.config(text="Resume")
+            self.pause_button.state(['pressed'])
 
 if __name__ == "__main__":
     GuiTimerView().run()
