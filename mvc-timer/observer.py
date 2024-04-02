@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 from random import randrange
 from typing import List
 
+
 class Subject(ABC):
     """
     The Subject interface declares a set of methods for managing subscribers.

@@ -7,12 +7,13 @@ Organization:
 * mvc-timer: The MVC example application developed by Prof Davis
 
 ## Team Members for Part 1
-Enter your names here
+Neel Troeger
+Jas Liu
 
 ## Team Roles for Part 1
 Who will start out as
-* DRIVER: _Driver's name_
-* NAVIGATOR: _Navigator's name_
+* DRIVER: Neel
+* NAVIGATOR: Jas
 
 You will switch halfway through this activity.
 
@@ -21,7 +22,12 @@ You will switch halfway through this activity.
 _Write your answers to the questions below._
 
 * What were the main ideas from the pre-lab reading?
+
+Model-view-controller separates code into three parts, model, which is the backend, view, which is the front-end, and controller, which is the brains of what is displayed.
+
 * What questions did you have about this material? What did you find confusing?
+
+Dependency injection was a bit confusing.
 
 ### Exercise 0: Run the tests and the application
 View the README file in the mvc-timer directory. Run the tests and the application.

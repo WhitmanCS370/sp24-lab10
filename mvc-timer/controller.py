@@ -1,6 +1,7 @@
 from mvc import TimerModel, TimerView
 from observer import Observer
 
+
 class TimerController(Observer):
     """Starts, stops, and pauses the timer model. Updates the timer view."""
 
@@ -48,7 +49,7 @@ class TimerController(Observer):
 
     def running(self):
         """True if the timer is running."""
-        return self._running and not self._paused 
+        return self._running and not self._paused
 
     def paused(self):
         """True if the timer is paused."""

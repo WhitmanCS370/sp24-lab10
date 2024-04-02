@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Timer App</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#start-btn").click(function() {
+                $.post("/start");
+            });
+
+            $("#stop-btn").click(function() {
+                $.post("/stop");
+            });
+
+            $("#pause-btn").click(function() {
+                $.post("/pause");
+            });
+
+            $("#sound-file").change(function() {
+                var formData = new FormData();
+                formData.append("sound_file", $("#sound-file")[0].files[0]);
+                $.ajax({
+                    url: "/select_sound",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function() {
+                        alert("Sound file selected!");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Timer App</h1>
+    <div>
+        <label for="minutes">Minutes:</label>
+        <input type="number" id="minutes" name="minutes" min="0" max="59">
+    </div>
+    <div>
+        <label for="seconds">Seconds:</label>
+        <input type="number" id="seconds" name="seconds" min="0" max="59">
+    </div>
+    <div>
+        <button id="start-btn">Start</button>
+        <button id="stop-btn">Stop</button>
+        <button id="pause-btn">Pause</button>
+    </div>
+    <div>
+        <label for="sound-file">Select Sound File:</label>
+        <input type="file" id="sound-file" name="sound_file">
+    </div>
+</body>
+</html>

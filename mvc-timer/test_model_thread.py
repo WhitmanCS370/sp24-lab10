@@ -5,6 +5,7 @@ from time import sleep
 from observer import Observer
 from model_thread import ThreadTimerModel
 
+
 class TestObserver(Observer):
     def __init__(self, writer):
         """Initialize with a stream to write output to."""
@@ -12,6 +13,7 @@ class TestObserver(Observer):
 
     def update(self, subject):
         self.writer.write(f"{subject._time} ")
+
 
 class TestTimerModel(unittest.TestCase):
 
@@ -65,5 +67,6 @@ class TestTimerModel(unittest.TestCase):
         sleep(5.5)
         self.assertEqual(self.buffer.getvalue(), "3 2 1 4 3 2 1 0 ")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

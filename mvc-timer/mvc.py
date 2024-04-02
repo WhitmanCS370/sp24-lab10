@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class TimerView(ABC):
     """Displays the timer."""
 
@@ -7,7 +8,7 @@ class TimerView(ABC):
     def run(self):
         """Called by a client to run the view."""
         pass
-    
+
     @abstractmethod
     def update_time(self):
         """Called by the controller when the timer value may have changed."""
@@ -17,6 +18,7 @@ class TimerView(ABC):
     def timer_done(self):
         """Called by the controller when the timer reaches 0."""
         pass
+
 
 class TimerModel(ABC):
     """
@@ -28,7 +30,7 @@ class TimerModel(ABC):
         """Initialize the timer."""
         pass
 
-    @property 
+    @property
     def time(self):
         """Get current time in seconds."""
         return 0
@@ -38,7 +40,7 @@ class TimerModel(ABC):
         """Set current time to the given non-negative value in seconds."""
         pass
 
-    @property 
+    @property
     def running(self):
         """True if the timer is running"""
         return False

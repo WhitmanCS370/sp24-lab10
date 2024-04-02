@@ -5,7 +5,7 @@ from view_gui import GuiTimerView
 
 Views = {"text": TextTimerView, "gui": GuiTimerView}
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     if len(argv) > 2 or (len(argv) == 2 and argv[1] not in Views.keys()):
         print("Usage: python3 timer.py [text|gui]")

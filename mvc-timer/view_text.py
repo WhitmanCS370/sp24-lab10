@@ -1,6 +1,9 @@
 from threading import Thread
 from time import sleep
 from controller import TimerController, TimerView
+#import simpleaudio as sa
+import curses as c
+
 
 class TextTimerView(TimerView):
 
@@ -22,16 +25,18 @@ class TextTimerView(TimerView):
 
     def timer_done(self):
         """Indicate the timer is done."""
+        # s = sa.WaveObject.from_wave_file("alarm.wav").play()
+        # s.wait_done()
         print("DING DING DING DING DING")
 
     def _getTimeFromUser(self):
         """Get a positive integer time from the user."""
         while True:
             s = input("Enter time in seconds: ")
-            if s[0] == 'q':
-                return 
+            if s[0] == "q":
+                return
             try:
-                time = int(s) 
+                time = int(s)
                 assert time >= 0
                 return time
             except:
