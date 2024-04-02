@@ -37,7 +37,7 @@ What questions do you have? _Write them here. If you need to know, ask Prof Davi
 
 ### Exercise 2: Patterns and principles
 _Answer the following questions to the best of your ability._
-* Which concrete classes implement the Observer and Observable roles?
+* Which concrete classes implement the Observer and Subject roles?
 * How do the model, controller, and view classes gain references to each other? What style of dependency injection does the application use: constructor, method, or property injection?
 
 ### Exercise 3: Extending the code
