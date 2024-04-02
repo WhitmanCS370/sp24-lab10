@@ -22,7 +22,7 @@ class TextTimerView(TimerView):
 
     def timer_done(self):
         """Indicate the timer is done."""
-        print("DING DING DING DING DING")
+        self.done_sound()
 
     def _getTimeFromUser(self):
         """Get a positive integer time from the user."""

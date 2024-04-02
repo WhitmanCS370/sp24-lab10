@@ -88,10 +88,12 @@ class GuiTimerView(TimerView):
         self.display_time()
 
     def timer_done(self):
-        """Indicate the timer is done. Called by the controller.""" 
+        """Indicate the timer is done. Called by the controller."""
+        self.done_sound()
         self.start_button.config(state="normal")
         self.stop_button.config(state="disabled")
         self.pause_button.config(state="disabled")
+
         
     def start(self):
         """Start the timer."""

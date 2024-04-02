@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from pygame import mixer
 
 class TimerView(ABC):
     """Displays the timer."""
@@ -17,6 +18,11 @@ class TimerView(ABC):
     def timer_done(self):
         """Called by the controller when the timer reaches 0."""
         pass
+
+    def done_sound(self, file='bell.wav'):
+        mixer.init()
+        sound=mixer.Sound(file)
+        sound.play()
 
 class TimerModel(ABC):
     """
