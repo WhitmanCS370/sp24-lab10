@@ -1,10 +1,34 @@
 import tkinter as tk
 from tkinter import ttk
+import winsound
 from abc import ABC, abstractmethod
 from controller import TimerController, TimerView
 
 # Fixed up from AI generated code
 # See https://chat.openai.com/share/35e48a9c-ba3f-461e-bc01-633ef4343eff
+
+
+class SoundPlayer:
+    """
+    Plays a sound based on the input.
+    Input: sound (int) - 0, 1, or 2
+    - 0: single beep
+    - 1: double beep
+    - 2: triple beep
+    """
+    def __init__(self, sound):
+        if sound not in [0, 1, 2]:
+            raise ValueError("Invalid sound specified. Please use 0, 1, or 2.")
+        self.sound = sound
+
+    def __call__(self):
+        # Use the play method when the instance is called.
+        self.play(self.sound)
+
+    def play(self, sound):
+        # Play the sound according to the specified number of beeps.
+        for _ in range(sound + 1):
+            winsound.Beep(1000, 1000)
 
 class GuiTimerView(TimerView):
     """A graphical timer application."""
@@ -43,6 +67,19 @@ class GuiTimerView(TimerView):
         
         self.pause_button = ttk.Button(self.root, text="Pause", command=self.pause, state="disabled")
         self.pause_button.grid(row=2, column=2, padx=5, pady=5)
+
+        self.select_sound = ttk.Combobox(self.root, values=["Beep", "Double Beep", "Triple Beep"])
+        self.select_sound.grid(row=3, column=0, columnspan=3, padx=5, pady=5)
+
+    def play_sound(self, player):
+        """Play the selected sound using the provided SoundPlayer instance."""
+        sound = self.select_sound.get()
+        sound_mapping = {"Beep": 0, "Double Beep": 1, "Triple Beep": 2}
+        if sound in sound_mapping:
+            sound_code = sound_mapping[sound]
+            player_instance = player(sound_code)
+            player_instance()  # This calls the __call__ method of SoundPlayer.
+
         
     def run(self):
         """Run the application."""
@@ -89,6 +126,7 @@ class GuiTimerView(TimerView):
 
     def timer_done(self):
         """Indicate the timer is done. Called by the controller.""" 
+        self.play_sound(SoundPlayer) # Now I have to pass arguments to the SoundPlayer class here, which defeats the purpose of the whole injection
         self.start_button.config(state="normal")
         self.stop_button.config(state="disabled")
         self.pause_button.config(state="disabled")
