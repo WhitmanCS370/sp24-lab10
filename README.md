@@ -55,3 +55,4 @@ Extend the text or GUI application to play a sound when the timer is done.
 As time permits, try other exercises from the README in the `mvc-timer` directory.
 
 _Record here: What extensions did you implement or attempt to implement?_
+Extended the GUI application to play sound when timer is done.
