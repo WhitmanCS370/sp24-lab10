@@ -39,11 +39,15 @@ Read the code to understand what happens when you run the text timer application
 Then read the code to understand what happens when you run the GUI application, set the time, and start the timer.
 
 What questions do you have? _Write them here. If you need to know, ask Prof Davis since she wrote the code!_
+- I am curious about why the timer relies on the 'threading' library. What features of the timer are enabled by the use of threading?
 
 ### Exercise 2: Patterns and principles
 _Answer the following questions to the best of your ability._
 * Which concrete classes implement the Observer and Subject roles?
+ConcreteSubject, ConcreteObserverA, and ConcreteObserverB
+
 * How do the model, controller, and view classes gain references to each other? What style of dependency injection does the application use: constructor, method, or property injection?
+In `timer.py` we can see an example of constructor injection, as the ThreadTimerModule is constructed and passed to the view.
 
 ### Exercise 3: Extending the code
 Extend the text or GUI application to play a sound when the timer is done.
